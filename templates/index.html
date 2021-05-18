@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walmart Sales</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
+
+</head>
+<body>
+    <div class="shadow-sm w-full flex items-center bg-white" id="nav">
+        <div class="flex-none text-3xl md:text-3xl font-bold p-4 md:ml-16">
+            <div class="flex items-center text-blue-500">
+                <div class="">
+                    <img src="{{url_for('static', filename='img/newrently.png')}}" width="50" alt="">
+                </div>
+                <div class="font-logo text-md">
+                    Walmart Sales
+                </div>
+            </div>
+        </div>
+        <div class="hidden md:inline-block flex-grow pr-16 font-bold ">
+            <div class="flex justify-end text-gray-600 font-sans">
+                
+                <div class="p-4 ">
+                    <a href="/" class="cursor-pointer hover:underline font-medium">
+                        Home
+                    </a>
+                </div>
+                <div class="p-4 font-medium">
+                    <a href="/about" class="cursor-pointer hover:underline ">
+                        About
+                    </a>
+                </div>
+                
+                <div class="p-4">
+                    <a href="/" class="rounded-md p-2 px-4 cursor-pointer bg-blue-500 text-white hover:bg-blue-600">
+                        Try Prediction
+                    </a>
+                </div>
+                <!-- <div class="p-4 hover:bg-gray-800 hover:text-white hover:font-bold cursor-pointer">
+                    
+                </div> -->
+            </div>
+        </div>
+        <div class="md:hidden flex-grow">
+            <div class="flex justify-end">
+                <svg class="p-4 w-16 md:w-20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="flex items-center p-24 space-x-4">
+            <div class="w-1/3">
+                <img src="{{url_for('static', filename='img/predict.svg')}}" alt="">
+            </div>
+            <div class="text-4xl">
+                Predict how much you will sell long in advance
+                <div class="flex justify-center">
+                    <div class="mt-8">
+                        <a href="/login" class="rounded-md p-2 px-4 text-2xl cursor-pointer bg-blue-500 text-white hover:bg-blue-600">
+                            Try Prediction
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="flex justify-center mb-5">
+        <div class="w-1/2">
+            <div class="text-4xl">
+                Provide the store details.
+            </div>
+            <form action="{{url_for('get_prediction')}}" method="post">
+                <div class="">
+                    <input type="text" name="Store" placeholder="Enter the store name" required class="w-full h-5 p-5 border-2 m-3 rounded" />
+                    <input type="text" name="Dept" placeholder="Enter the Deprtment of the Store" required class="w-full h-5 p-5 border-2 m-3 rounded" />
+                    <input type="text" name="IsHoliday" placeholder="IsHoliday" required class="w-full h-5 p-5 border-2 m-3 rounded"/>
+                    <button type="submit" class="rounded-md p-2 px-4 text-2xl cursor-pointer bg-blue-500 text-white hover:bg-blue-600 rounded">Predict</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if ans %}
+    <div class="">
+        The prediction is {{ ans}}
+    </div>
+    {% endif %}
+</body>
+</html>
